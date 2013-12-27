@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -76,7 +76,7 @@ namespace BMCLV2
                 throw NoJava;
             }
             prs.changeEventH(LangManager.GetLangFromResource("LauncherCheckMem"));
-            if (Convert.ToUInt64(JavaXmx) < 0)
+            if (Convert.ToUInt64(JavaXmx) < 128)//即使启动Alpha版本MC也需要200M内存
             {
                 Logger.Log("可用内存过小" + JavaXmx, Logger.LogType.Error);
                 throw NoRam;
@@ -212,9 +212,9 @@ namespace BMCLV2
             mcarg = new StringBuilder(info.minecraftArguments);
             mcarg.Replace("${auth_player_name}", username);
             mcarg.Replace("${version_name}", version);
-            mcarg.Replace("${game_directory}", ".minecraft");
-            mcarg.Replace("${game_assets}", @".minecraft\assets");
-            mcarg.Replace("${assets_root}", @".minecraft\assets");
+            mcarg.Replace("${game_directory}", ".\.minecraft");
+            mcarg.Replace("${game_assets}", @".\.minecraft\assets");
+            mcarg.Replace("${assets_root}", @".\.minecraft\assets");
             mcarg.Replace("${user_type}", "Legacy");
             mcarg.Replace("${assets_index_name}", info.assets);
             mcarg.Replace("${auth_uuid}", "{}");
